@@ -4,7 +4,7 @@ using Common.Player.Movement.Constants;
 
 namespace Common.Player.Movement
 {
-    public class PlayerMovement : MonoBehaviour
+    public class PlayerMovementHandler : MonoBehaviour
     {
         #region EXPOSED_FIELDS
         [Header("Config")]

@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 {
     #region EXPOSED_FIELDS
     [Header("Comp Assigment")]
-    [SerializeField] private PlayerMovement playerMovement = null;
+    [SerializeField] private PlayerMovementHandler playerMovement = null;
     #endregion
 
     #region UNITY_CALLS
