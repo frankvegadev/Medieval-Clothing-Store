@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using Common.Player.Movement.Constants;
+
 namespace Common.Player.Movement
 {
     public class PlayerMovement : MonoBehaviour

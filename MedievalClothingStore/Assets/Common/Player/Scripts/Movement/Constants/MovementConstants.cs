@@ -1,4 +1,4 @@
-namespace Common.Player.Movement
+namespace Common.Player.Movement.Constants
 {
     public static class MovementConstants
     {
