@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using Common.Player.Movement.Constants;
+using Common.Player.Movement.Camera;
 
 namespace Common.Player.Movement
 {
@@ -12,6 +13,7 @@ namespace Common.Player.Movement
 
         [Header("Comp Assigment")]
         [SerializeField] private Rigidbody2D rigidBody = null;
+        [SerializeField] private CameraMovementHandler camMovement = null;
         #endregion
 
         #region PRIVATE_METHODS
@@ -20,13 +22,26 @@ namespace Common.Player.Movement
         #endregion
 
         #region PUBLIC_METHODS
-        public void HandleAxisInput()
+        public void HandleUpdate()
+        {
+            HandleAxisInput();
+            camMovement.HandleCameraMovement();
+        }
+
+        public void HandleFixedUpdate()
+        {
+            HandleAxisMovement();
+        }
+        #endregion
+
+        #region PRIVATE_METHODS
+        private void HandleAxisInput()
         {
             horizontalCurrentSpeed = Input.GetAxis(MovementConstants.movementAxisXInput);
             verticalCurrentSpeed = Input.GetAxis(MovementConstants.movementAxisYInput);
         }
 
-        public void HandleAxisMovement()
+        private void HandleAxisMovement()
         {
             rigidBody.velocity = new Vector2(horizontalCurrentSpeed, verticalCurrentSpeed).normalized * moveSpeed;
         }

@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        playerMovement.HandleAxisInput();
+        playerMovement.HandleUpdate();
     }
 
     private void FixedUpdate()
     {
-        playerMovement.HandleAxisMovement();
+        playerMovement.HandleFixedUpdate();
     }
     #endregion
 }
