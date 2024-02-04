@@ -1,33 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
-
 using UnityEngine;
 
-using Common.Player.Movement;
+using Common.Player.Controller.Movement;
 
-public class PlayerController : MonoBehaviour
+namespace Common.Player
 {
-    #region EXPOSED_FIELDS
-    [Header("Comp Assigment")]
-    [SerializeField] private PlayerMovementHandler playerMovement = null;
-    #endregion
-
-    #region UNITY_CALLS
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerController : MonoBehaviour
     {
+        #region EXPOSED_FIELDS
+        [Header("Comp Assigment")]
+        [SerializeField] private PlayerMovementHandler playerMovement = null;
+        #endregion
 
-    }
+        #region UNITY_CALLS
+        // Update is called once per frame
+        private void Update()
+        {
+            playerMovement.HandleUpdate();
+        }
 
-    // Update is called once per frame
-    private void Update()
-    {
-        playerMovement.HandleUpdate();
+        private void FixedUpdate()
+        {
+            playerMovement.HandleFixedUpdate();
+        }
+        #endregion
     }
-
-    private void FixedUpdate()
-    {
-        playerMovement.HandleFixedUpdate();
-    }
-    #endregion
 }

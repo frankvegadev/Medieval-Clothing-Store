@@ -1,9 +1,9 @@
 using UnityEngine;
 
-using Common.Player.Movement.Constants;
-using Common.Player.Movement.Camera;
+using Common.Player.Controller.Movement.Camera;
+using Common.Player.Controller.Movement.Constants;
 
-namespace Common.Player.Movement
+namespace Common.Player.Controller.Movement
 {
     public class PlayerMovementHandler : MonoBehaviour
     {
