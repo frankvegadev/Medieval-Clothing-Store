@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 8161324612202519128}
   - component: {fileID: 8161324612202519135}
   - component: {fileID: 4682327148917263773}
+  - component: {fileID: 7152746275438633728}
   - component: {fileID: 8161324612202519132}
   - component: {fileID: 8161324612202519134}
   m_Layer: 0
@@ -550,6 +551,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 8161324612202519132}
   playerInventory: {fileID: 4682327148917263773}
+  playerCurrencies: {fileID: 0}
   playerView: {fileID: 787709457255833974}
 --- !u!114 &4682327148917263773
 MonoBehaviour:
@@ -569,6 +571,19 @@ MonoBehaviour:
     torsoConfig: {fileID: 11400000, guid: 584be937eae335b4ebb8ee1076b1d021, type: 2}
     legsConfig: {fileID: 11400000, guid: 19bb142a7d4ab884089423a9614212ac, type: 2}
     feetConfig: {fileID: 11400000, guid: 59cafa2be46534a498ad21cfd183f2d3, type: 2}
+--- !u!114 &7152746275438633728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8161324612202519129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d352d065a45529d4eb41d15dd7679b60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCurrenciesView: {fileID: 0}
 --- !u!114 &8161324612202519132
 MonoBehaviour:
   m_ObjectHideFlags: 0

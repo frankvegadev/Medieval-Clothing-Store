@@ -3,6 +3,7 @@ using UnityEngine;
 using Common.Player.Movement;
 using Common.Player.Inventory;
 using Common.Player.View;
+using Common.Player.Currencies;
 
 using Common.GameItems.Config;
 using Common.GameItems.Instance;
@@ -18,6 +19,7 @@ namespace Common.Player
         [Header("Comp Assigment")]
         [SerializeField] private PlayerMovementHandler playerMovement = null;
         [SerializeField] private PlayerInventoryHandler playerInventory = null;
+        [SerializeField] private PlayerCurrenciesHandler playerCurrencies = null;
         [SerializeField] private PlayerView playerView = null;
         #endregion
 
@@ -93,6 +95,21 @@ namespace Common.Player
             }
 
             return false;
+        }
+
+        public void AddCoins(int amount)
+        {
+            playerCurrencies.AddCoins(amount);
+        }
+
+        public void SubstractCoins(int amount)
+        {
+            playerCurrencies.SubstractCoins(amount);
+        }
+
+        public void SetCoins(int amount)
+        {
+            playerCurrencies.SetCoins(amount);
         }
         #endregion
 

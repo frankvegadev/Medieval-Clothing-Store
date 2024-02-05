@@ -36,6 +36,8 @@ namespace Game
             playerController.Configure();
             playerController.ConfigureInput(InputConstants.movementAxisYInput, InputConstants.movementAxisXInput, InputConstants.toggleInventoryInput);
             GiftItemsToPlayer();
+
+            playerController.AddCoins(150);
         }
 
         private void GiftItemsToPlayer()
