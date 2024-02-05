@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 
 using Common.Player.Inventory.Model;
@@ -8,12 +10,19 @@ namespace Common.Player.Inventory.View
     public class PlayerInventoryView : MonoBehaviour
     {
         #region EXPOSED_FIELDS
+        [SerializeField] private GameObject inventoryHolder = null;
         [SerializeField] private PlayerInventoryItemSlotView[] equipmentSlots = null;
         #endregion
 
+        #region ACTIONS
+        private Action<bool> onInventoryHolderStatus = null;
+        #endregion
+
         #region PUBLIC_METHODS
-        public void Configure(PlayerInventorySlotModel[] playerEquipmentSlots)
+        public void Configure(PlayerInventorySlotModel[] playerEquipmentSlots, Action<bool> onInventoryHolderStatus)
         {
+            this.onInventoryHolderStatus = onInventoryHolderStatus;
+
             for (int i = 0; i < equipmentSlots.Length; i++)
             {
                 equipmentSlots[i].Configure(playerEquipmentSlots[i]);
@@ -30,6 +39,18 @@ namespace Common.Player.Inventory.View
                     break;
                 }
             }
+        }
+
+        public void ToggleInventory()
+        {
+            SetInventoryStatus(!inventoryHolder.activeSelf);
+        }
+
+        public void SetInventoryStatus(bool state)
+        {
+            onInventoryHolderStatus.Invoke(state);
+
+            inventoryHolder.SetActive(state);
         }
         #endregion
     }

@@ -20,26 +20,39 @@ namespace Common.Player
         [SerializeField] private PlayerView playerView = null;
         #endregion
 
-        #region UNITY_CALLS
-        private void Awake()
-        {
-            //Temporary
-            Configure();
-        }
+        #region PRIVATE_FIELDS
+        private bool enablePlayerMovement = true;
+        #endregion
 
+        #region UNITY_CALLS
         // Update is called once per frame
         private void Update()
         {
+            if(!enablePlayerMovement)
+            {
+                return;
+            }
+
             playerMovement.HandleUpdate();
         }
 
         private void FixedUpdate()
         {
+            if (!enablePlayerMovement)
+            {
+                return;
+            }
+
             playerMovement.HandleFixedUpdate();
         }
 
         private void LateUpdate()
         {
+            if (!enablePlayerMovement)
+            {
+                return;
+            }
+
             playerMovement.HandleLateUpdate();
         }
         #endregion
@@ -48,10 +61,25 @@ namespace Common.Player
         public void Configure()
         {
             playerView.Configure();
-            playerMovement.SetupActions(HandleOnPlayerInputLeft, HandleOnPlayerInputRight, HandleOnPlayerInputUp, HandleOnPlayerInputDown, HandleOnPlayerInputStop);
-            playerInventory.Configure(HandlePlayerClothesChange);
+            playerMovement.Configure(HandleOnPlayerInputLeft, HandleOnPlayerInputRight, HandleOnPlayerInputUp, HandleOnPlayerInputDown, HandleOnPlayerInputStop);
+            playerInventory.Configure(HandlePlayerClothesChange, 
+                onInventoryHolderStatus: (state) =>
+                {
+                    enablePlayerMovement = !state;
+
+                    if(state)
+                    {
+                        playerMovement.StopPlayer();
+                    }
+                });
 
             playerView.SetAnimationState(ANIM_STATES_NPC.STAND_DOWN);
+        }
+
+        public void ConfigureInput(string verticalAxisInputName, string horizontalAxisInputName, string toggleInventoryInputName)
+        {
+            playerMovement.ConfigureInput(verticalAxisInputName, horizontalAxisInputName);
+            playerInventory.ConfigureInput(toggleInventoryInputName);
         }
         #endregion
 

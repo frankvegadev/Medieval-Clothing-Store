@@ -23,6 +23,8 @@ namespace Common.Player.Inventory
 
         #region PRIVATE_FIELDS
         private PlayerInventorySlotModel[] playerEquipmentSlots = null;
+
+        private string toggleInventoryInputName = string.Empty;
         #endregion
 
         #region ACTIONS
@@ -37,12 +39,12 @@ namespace Common.Player.Inventory
         // Update is called once per frame
         void Update()
         {
-
+            HandleInventoryInput();
         }
         #endregion
 
         #region PUBLIC_METHODS
-        public void Configure(Action<GameItemConfig> onUpdatePlayerClothes)
+        public void Configure(Action<GameItemConfig> onUpdatePlayerClothes, Action<bool> onInventoryHolderStatus = null)
         {
             this.onUpdatePlayerClothes = onUpdatePlayerClothes;
 
@@ -58,7 +60,13 @@ namespace Common.Player.Inventory
             TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE.LEGS, CreateItemInstance(defaultPlayerClothes.LegsConfig));
             TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE.FEET, CreateItemInstance(defaultPlayerClothes.FeetConfig));
 
-            inventoryView.Configure(playerEquipmentSlots);
+            inventoryView.Configure(playerEquipmentSlots, onInventoryHolderStatus);
+            inventoryView.SetInventoryStatus(false);
+        }
+
+        public void ConfigureInput(string toggleInventoryInputName)
+        {
+            this.toggleInventoryInputName = toggleInventoryInputName;
         }
 
         public void TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE equipmentSlotType, GameItemInstanceModel gameItemInstance)
@@ -81,6 +89,18 @@ namespace Common.Player.Inventory
         #endregion
 
         #region PRIVATE_METHODS
+        private void HandleInventoryInput()
+        {
+            if(string.IsNullOrEmpty(toggleInventoryInputName))
+            {
+                return;
+            }
+
+            if(Input.GetButtonDown(toggleInventoryInputName))
+            {
+                inventoryView.ToggleInventory();
+            }
+        }
         #endregion
     }
 }

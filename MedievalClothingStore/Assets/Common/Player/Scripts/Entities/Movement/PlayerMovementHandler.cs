@@ -3,7 +3,6 @@ using System;
 using UnityEngine;
 
 using Common.Player.Movement.Camera;
-using Common.Player.Movement.Constants;
 
 namespace Common.Player.Movement
 {
@@ -21,6 +20,9 @@ namespace Common.Player.Movement
         #region PRIVATE_METHODS
         private float horizontalCurrentSpeed = 0;
         private float verticalCurrentSpeed = 0;
+
+        private string verticalInputName = string.Empty;
+        private string horizontalInputName = string.Empty;
         #endregion
 
         #region ACTIONS
@@ -47,7 +49,7 @@ namespace Common.Player.Movement
             camMovement.HandleCameraMovement();
         }
 
-        public void SetupActions(Action onPlayerInputLeft, Action onPlayerInputRight, Action onPlayerInputUp, Action onPlayerInputDown,
+        public void Configure(Action onPlayerInputLeft, Action onPlayerInputRight, Action onPlayerInputUp, Action onPlayerInputDown,
             Action onPlayerInputStop)
         {
             this.onPlayerInputLeft = onPlayerInputLeft;
@@ -56,13 +58,32 @@ namespace Common.Player.Movement
             this.onPlayerInputUp = onPlayerInputUp;
             this.onPlayerInputDown = onPlayerInputDown;
         }
+
+        public void ConfigureInput(string verticalInputName, string horizontalInputName)
+        {
+            this.verticalInputName = verticalInputName;
+            this.horizontalInputName = horizontalInputName;
+        }
+
+        public void StopPlayer()
+        {
+            rigidBody.velocity = Vector2.zero;
+            horizontalCurrentSpeed = 0;
+            verticalCurrentSpeed = 0;
+            onPlayerInputStop?.Invoke();
+        }
         #endregion
 
         #region PRIVATE_METHODS
         private void HandleAxisInput()
         {
-            horizontalCurrentSpeed = Input.GetAxis(MovementConstants.movementAxisXInput);
-            verticalCurrentSpeed = Input.GetAxis(MovementConstants.movementAxisYInput);
+            if (string.IsNullOrEmpty(horizontalInputName) || string.IsNullOrEmpty(verticalInputName))
+            {
+                return;
+            }
+
+            horizontalCurrentSpeed = Input.GetAxis(horizontalInputName);
+            verticalCurrentSpeed = Input.GetAxis(verticalInputName);
         }
 
         private void HandleAxisMovement()
