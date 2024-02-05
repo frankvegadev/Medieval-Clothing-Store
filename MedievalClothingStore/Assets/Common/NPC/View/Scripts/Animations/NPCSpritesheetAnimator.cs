@@ -14,6 +14,7 @@ namespace Common.NPC.Animations
 
         #region PRIVATE_FIELDS
         private NPCSpritesheetAnimationConfig currentConfig = null;
+        private Color currentColor = Color.white;
         private ANIM_STATES_NPC currentAnimState = ANIM_STATES_NPC.NONE;
 
         private bool isAnimationTimerActive = false;
@@ -23,12 +24,6 @@ namespace Common.NPC.Animations
         #endregion
 
         #region UNITY_CALLS
-        // Start is called before the first frame update
-        void Start()
-        {
-            currentConfig = defaultConfig;
-        }
-
         // Update is called once per frame
         void Update()
         {
@@ -47,6 +42,14 @@ namespace Common.NPC.Animations
         #endregion
 
         #region PUBLIC_METHODS
+        public void Configure()
+        {
+            if (defaultConfig != null)
+            {
+                currentConfig = defaultConfig;
+            }
+        }
+
         public void StartStopAnimation()
         {
             ANIM_STATES_NPC newState = ANIM_STATES_NPC.NONE;
@@ -86,15 +89,15 @@ namespace Common.NPC.Animations
             {
                 case ANIM_STATES_NPC.WALK_LEFT:
                 case ANIM_STATES_NPC.WALK_RIGHT:
-                    SetSprite(currentConfig.StandRight);
+                    SetSprite(currentConfig.StandRight, currentColor);
                     currentAnimState = ANIM_STATES_NPC.STAND_RIGHT;
                     break;
                 case ANIM_STATES_NPC.WALK_UP:
-                    SetSprite(currentConfig.StandUp);
+                    SetSprite(currentConfig.StandUp, currentColor);
                     currentAnimState = ANIM_STATES_NPC.STAND_UP;
                     break;
                 case ANIM_STATES_NPC.WALK_DOWN:
-                    SetSprite(currentConfig.StandDown);
+                    SetSprite(currentConfig.StandDown, currentColor);
                     currentAnimState = ANIM_STATES_NPC.STAND_DOWN;
                     break;
             }
@@ -119,13 +122,13 @@ namespace Common.NPC.Animations
             {
                 case ANIM_STATES_NPC.STAND_LEFT:
                 case ANIM_STATES_NPC.STAND_RIGHT:
-                    SetSprite(currentConfig.StandRight);
+                    SetSprite(currentConfig.StandRight, currentColor);
                     break;
                 case ANIM_STATES_NPC.STAND_UP:
-                    SetSprite(currentConfig.StandUp);
+                    SetSprite(currentConfig.StandUp, currentColor);
                     break;
                 case ANIM_STATES_NPC.STAND_DOWN:
-                    SetSprite(currentConfig.StandDown);
+                    SetSprite(currentConfig.StandDown, currentColor);
                     break;
                 case ANIM_STATES_NPC.WALK_LEFT:
                 case ANIM_STATES_NPC.WALK_RIGHT:
@@ -140,18 +143,20 @@ namespace Common.NPC.Animations
             }
         }
 
-        public void SetConfig(NPCSpritesheetAnimationConfig config)
+        public void SetConfig(NPCSpritesheetAnimationConfig config, Color spriteColor)
         {
+            currentColor = spriteColor;
             currentConfig = config;
         }
         #endregion
 
         #region PRIVATE_METHODS
-        private void SetSprite(NPCSpritesheetAnimationFrameConfig frameConfig)
+        private void SetSprite(NPCSpritesheetAnimationFrameConfig frameConfig, Color spriteColor)
         {
             Sprite finalSprite = frameConfig.Sprite;
 
             spriteRenderer.sprite = finalSprite;
+            spriteRenderer.color = spriteColor;
             spriteRenderer.flipX = frameConfig.FlipX;
             spriteRenderer.flipY = frameConfig.FlipY;
         }
@@ -163,7 +168,7 @@ namespace Common.NPC.Animations
             currentAnimationTimer = 0;
             isAnimationTimerActive = true;
 
-            SetSprite(currentAnimSprites[animationIndex]);
+            SetSprite(currentAnimSprites[animationIndex], currentColor);
         }
 
         private void ProceedToNextAnimFrame()
@@ -177,7 +182,7 @@ namespace Common.NPC.Animations
                 animationIndex = 0;
             }
 
-            SetSprite(currentAnimSprites[animationIndex]);
+            SetSprite(currentAnimSprites[animationIndex], currentColor);
         }
         #endregion
     }

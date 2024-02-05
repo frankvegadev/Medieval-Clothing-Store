@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbed9b24481fc1744b315a78fb59bbc8, type: 3}
+  m_Name: NPCAnimationConfig_Hair_Short_White
+  m_EditorClassIdentifier: 
+  standRight:
+    sprite: {fileID: 287434355, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  standUp:
+    sprite: {fileID: -1518916003, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  standDown:
+    sprite: {fileID: 2018987321, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  walkRight:
+  - sprite: {fileID: -29699169, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: 1279191905, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: -972006051, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: -395192755, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: 30115892, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: 100930659, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  walkUp:
+  - sprite: {fileID: 1199717534, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: -1238846600, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: 1668320941, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: 1199717534, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 1
+    flipY: 0
+  - sprite: {fileID: -1238846600, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 1
+    flipY: 0
+  - sprite: {fileID: 1668320941, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 1
+    flipY: 0
+  walkDown:
+  - sprite: {fileID: -314077005, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: -744679972, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: 567380714, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 0
+    flipY: 0
+  - sprite: {fileID: -314077005, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 1
+    flipY: 0
+  - sprite: {fileID: -744679972, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 1
+    flipY: 0
+  - sprite: {fileID: 567380714, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+    flipX: 1
+    flipY: 0

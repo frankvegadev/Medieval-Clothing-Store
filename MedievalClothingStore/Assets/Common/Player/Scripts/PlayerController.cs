@@ -1,9 +1,12 @@
 using UnityEngine;
 
 using Common.Player.Controller.Movement;
+using Common.Player.Controller.Inventory;
 using Common.Player.View;
 
-using Common.NPC.Animations.Constants;
+using Common.GameItems.Config;
+
+using static Common.NPC.Animations.Constants.AnimationConstants;
 
 namespace Common.Player
 {
@@ -12,14 +15,15 @@ namespace Common.Player
         #region EXPOSED_FIELDS
         [Header("Comp Assigment")]
         [SerializeField] private PlayerMovementHandler playerMovement = null;
+        [SerializeField] private PlayerInventoryHandler playerInventory = null;
         [SerializeField] private PlayerView playerView = null;
         #endregion
 
         #region UNITY_CALLS
-        private void Start()
+        private void Awake()
         {
             //Temporary
-            playerMovement.SetupActions(HandleOnPlayerInputLeft, HandleOnPlayerInputRight, HandleOnPlayerInputUp, HandleOnPlayerInputDown, HandleOnPlayerInputStop);
+            Configure();
         }
 
         // Update is called once per frame
@@ -39,25 +43,46 @@ namespace Common.Player
         }
         #endregion
 
+        #region PUBLIC_METHODS
+        public void Configure()
+        {
+            playerView.Configure();
+            playerMovement.SetupActions(HandleOnPlayerInputLeft, HandleOnPlayerInputRight, HandleOnPlayerInputUp, HandleOnPlayerInputDown, HandleOnPlayerInputStop);
+            playerInventory.Configure(HandlePlayerClothesChange);
+
+            playerView.SetAnimationState(ANIM_STATES_NPC.STAND_DOWN);
+        }
+        #endregion
+
         #region PRIVATE_METHODS
+        private void SetPlayerClothingPart(GameItemConfig itemConfig)
+        {
+            playerInventory.SetPlayerClothingPart(itemConfig);
+        }
+
+        private void HandlePlayerClothesChange(GameItemConfig itemConfig)
+        {
+            playerView.SetClothingPart(itemConfig);
+        }
+
         private void HandleOnPlayerInputLeft()
         {
-            playerView.SetAnimationState(AnimationConstants.ANIM_STATES_NPC.WALK_LEFT);
+            playerView.SetAnimationState(ANIM_STATES_NPC.WALK_LEFT);
         }
 
         private void HandleOnPlayerInputRight()
         {
-            playerView.SetAnimationState(AnimationConstants.ANIM_STATES_NPC.WALK_RIGHT);
+            playerView.SetAnimationState(ANIM_STATES_NPC.WALK_RIGHT);
         }
 
         private void HandleOnPlayerInputUp()
         {
-            playerView.SetAnimationState(AnimationConstants.ANIM_STATES_NPC.WALK_UP);
+            playerView.SetAnimationState(ANIM_STATES_NPC.WALK_UP);
         }
 
         private void HandleOnPlayerInputDown()
         {
-            playerView.SetAnimationState(AnimationConstants.ANIM_STATES_NPC.WALK_DOWN);
+            playerView.SetAnimationState(ANIM_STATES_NPC.WALK_DOWN);
         }
 
         private void HandleOnPlayerInputStop()
