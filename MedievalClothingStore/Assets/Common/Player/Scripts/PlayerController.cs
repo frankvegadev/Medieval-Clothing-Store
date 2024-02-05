@@ -89,12 +89,12 @@ namespace Common.Player
         {
             GameItemInstanceModel itemInstance = playerInventory.CreateItemInstance(gameItemConfig);
 
-            if(playerInventory.TryAddItemToInventory(itemInstance))
-            {
-                return true;
-            }
+            return playerInventory.TryAddItemToInventory(itemInstance);
+        }
 
-            return false;
+        public bool TryRemoveItemFromInventory(GameItemInstanceModel gameItemInstance)
+        {
+            return playerInventory.TryRemoveItemFromInventory(gameItemInstance);
         }
 
         public void AddCoins(int amount)
@@ -110,6 +110,16 @@ namespace Common.Player
         public void SetCoins(int amount)
         {
             playerCurrencies.SetCoins(amount);
+        }
+
+        public int GetCoins()
+        {
+            return playerCurrencies.GetCoins();
+        }
+
+        public GameItemInstanceModel[] GetValidInventoryItems()
+        {
+            return playerInventory.GetValidInventoryItems();
         }
         #endregion
 

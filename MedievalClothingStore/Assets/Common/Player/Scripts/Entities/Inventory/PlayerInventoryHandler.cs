@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 using UnityEngine;
 
@@ -110,6 +111,26 @@ namespace Common.Player.Inventory
             return false;
         }
 
+        public bool TryRemoveItemFromInventory(GameItemInstanceModel gameItemInstance)
+        {
+            //Clear from regular inventory slot
+            if (GetItemIndexInInventory(gameItemInstance, out int index))
+            {
+                if(playerInventorySlots[index].Equipped)
+                {
+                    Debug.LogWarning("Cannot remove equipped item.");
+                    return false;
+                }
+
+                inventoryView.ClearInventorySlot(index);
+                playerInventorySlots[index].ClearSlot();
+
+                return true;
+            }
+
+            return false;
+        }
+
         public void TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE equipmentSlotType, GameItemInstanceModel gameItemInstance)
         {
             //if they are the same instance id, swap item
@@ -179,6 +200,36 @@ namespace Common.Player.Inventory
         public GameItemInstanceModel CreateItemInstance(GameItemConfig itemConfig)
         {
             return new GameItemInstanceModel(itemConfig);
+        }
+
+        public GameItemInstanceModel[] GetValidInventoryItems()
+        {
+            List<GameItemInstanceModel> items = new List<GameItemInstanceModel>();
+
+            for (int i = 0; i < playerInventorySlots.Length; i++)
+            {
+                if (playerInventorySlots[i].GameItemInstance != null)
+                {
+                    items.Add(playerInventorySlots[i].GameItemInstance);
+                }
+            }
+
+            return items.ToArray();
+        }
+
+        public GameItemInstanceModel[] GetValidEquipmentItems()
+        {
+            List<GameItemInstanceModel> items = new List<GameItemInstanceModel>();
+
+            for (int i = 0; i < playerEquipmentSlots.Length; i++)
+            {
+                if (playerEquipmentSlots[i].GameItemInstance != null)
+                {
+                    items.Add(playerEquipmentSlots[i].GameItemInstance);
+                }
+            }
+
+            return items.ToArray();
         }
         #endregion
 

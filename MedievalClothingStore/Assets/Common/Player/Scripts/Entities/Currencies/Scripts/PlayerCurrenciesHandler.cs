@@ -40,6 +40,11 @@ namespace Common.Player.Currencies
             coinsAmount = amount;
             UpdateCoinsView();
         }
+
+        public int GetCoins()
+        {
+            return coinsAmount;
+        }
         #endregion
 
         #region PRIVATE_METHODS
