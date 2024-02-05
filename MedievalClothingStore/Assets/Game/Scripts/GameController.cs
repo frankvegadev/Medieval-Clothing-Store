@@ -7,6 +7,7 @@ using Common.Purchases;
 using Common.Purchases.Config;
 
 using Game.Constants;
+using Game.Store;
 
 namespace Game
 {
@@ -15,6 +16,9 @@ namespace Game
         #region EXPOSED_FIELDS
         [SerializeField] private PlayerController playerController = null;
         [SerializeField] private PurchaseController purchaseController = null;
+
+        [Header("Scene Config")]
+        [SerializeField] private StoreController storeController = null;
 
         [Header("Test")]
         [SerializeField] private GameItemConfig[] testItemConfigs = null;
@@ -31,7 +35,12 @@ namespace Game
         // Update is called once per frame
         void Update()
         {
-
+            //Temporary
+            /*if(Input.GetButtonDown("Jump"))
+            {
+                storeController.ToggleView();
+                storeController.DisplaySellMenu(playerController.GetValidInventoryItems());
+            }*/
         }
         #endregion
 
@@ -40,11 +49,12 @@ namespace Game
         {
             playerController.Configure();
             purchaseController.Configure(playerController);
+            storeController.Configure(purchaseController);
 
             playerController.ConfigureInput(InputConstants.movementAxisYInput, InputConstants.movementAxisXInput, InputConstants.toggleInventoryInput);
             GiftItemsToPlayer();
 
-            playerController.AddCoins(150);
+            playerController.AddCoins(550);
 
             TrySellGiftedItems();
 

@@ -31,8 +31,13 @@ namespace Common.Purchases
             {
                 playerController.SubstractCoins(buyableItem.Price);
                 playerController.TryAddItemToInventory(buyableItem.ItemConfig);
+
+                Debug.Log("Item: " + buyableItem.ItemConfig.ItemID + " bought!");
+
                 return true;
             }
+
+            Debug.Log("Couldnt buy Item: " + buyableItem.ItemConfig.ItemID);
 
             return false;
         }
@@ -41,6 +46,8 @@ namespace Common.Purchases
         {
             playerController.AddCoins(itemInstance.ItemConfigAttached.SellPrice);
             playerController.TryRemoveItemFromInventory(itemInstance);
+
+            Debug.Log("Item: " + itemInstance.ItemConfigAttached.ItemID + " sold!");
 
             return true;
         }

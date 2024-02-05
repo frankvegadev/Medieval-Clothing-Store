@@ -11,6 +11,7 @@ namespace Common.GameItems.Config
     {
         #region EXPOSED_FIELDS
         [SerializeField] private string itemID = string.Empty;
+        [SerializeField] private string displayTitle = string.Empty;
         [SerializeField] private GAME_ITEM_SLOT_TYPE slotType = GAME_ITEM_SLOT_TYPE.NONE;
         [SerializeField] private int sellPrice = 0;
         [SerializeField] private Sprite previewSprite = null;
@@ -25,6 +26,7 @@ namespace Common.GameItems.Config
         public Sprite PreviewSprite { get => previewSprite; }
         public NPCSpritesheetAnimationConfig AnimationConfig { get => animationConfig; }
         public Color SpriteColor { get => spriteColor; }
+        public string DisplayTitle { get => displayTitle; }
         #endregion
     }
 }
