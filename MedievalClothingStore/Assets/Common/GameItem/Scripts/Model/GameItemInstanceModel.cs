@@ -4,7 +4,7 @@ using Common.GameItems.Config;
 
 namespace Common.GameItems.Instance
 {
-    public class GameItemInstanceModel : MonoBehaviour
+    public class GameItemInstanceModel
     {
         #region EXPOSED_FIELDS
         [SerializeField] private string instanceID = string.Empty;

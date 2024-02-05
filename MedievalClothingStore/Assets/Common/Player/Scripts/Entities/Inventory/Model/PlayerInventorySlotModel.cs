@@ -22,7 +22,7 @@ namespace Common.Player.Inventory.Model
             return gameItemInstance != null;
         }
 
-        public void CleanSlot()
+        public void ClearSlot()
         {
             equipped = false;
             gameItemInstance = null;

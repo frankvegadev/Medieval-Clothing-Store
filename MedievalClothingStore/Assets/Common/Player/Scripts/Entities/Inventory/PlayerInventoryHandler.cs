@@ -23,8 +23,13 @@ namespace Common.Player.Inventory
 
         #region PRIVATE_FIELDS
         private PlayerInventorySlotModel[] playerEquipmentSlots = null;
+        private PlayerInventorySlotModel[] playerInventorySlots = null;
 
         private string toggleInventoryInputName = string.Empty;
+        #endregion
+
+        #region CONSTANTS
+        private const int playerSlots = 10;
         #endregion
 
         #region ACTIONS
@@ -48,6 +53,13 @@ namespace Common.Player.Inventory
         {
             this.onUpdatePlayerClothes = onUpdatePlayerClothes;
 
+            playerInventorySlots = new PlayerInventorySlotModel[playerSlots];
+
+            for (int i = 0; i < playerInventorySlots.Length; i++)
+            {
+                playerInventorySlots[i] = new PlayerInventorySlotModel();
+            }
+
             playerEquipmentSlots = new PlayerInventorySlotModel[(int)GAME_ITEM_SLOT_TYPE.NONE];
 
             for (int i = 0; i < playerEquipmentSlots.Length; i++)
@@ -60,13 +72,40 @@ namespace Common.Player.Inventory
             TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE.LEGS, CreateItemInstance(defaultPlayerClothes.LegsConfig));
             TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE.FEET, CreateItemInstance(defaultPlayerClothes.FeetConfig));
 
-            inventoryView.Configure(playerEquipmentSlots, onInventoryHolderStatus);
+            inventoryView.Configure(playerEquipmentSlots, playerInventorySlots, onInventoryHolderStatus);
             inventoryView.SetInventoryStatus(false);
         }
 
         public void ConfigureInput(string toggleInventoryInputName)
         {
             this.toggleInventoryInputName = toggleInventoryInputName;
+        }
+
+        public bool TryAddItemToInventory(GameItemInstanceModel gameItemInstance)
+        {
+            bool canAddItem = false;
+            int firstUnoccupiedIndex = 0;
+
+            for (int i = 0; i < playerInventorySlots.Length; i++)
+            {
+                if (!playerInventorySlots[i].IsSlotOcuppied())
+                {
+                    firstUnoccupiedIndex = i;
+                    canAddItem = true;
+                    break;
+                }
+            }
+
+            if(canAddItem)
+            {
+                if(playerInventorySlots[firstUnoccupiedIndex].TrySetItemToSlot(gameItemInstance))
+                {
+                    inventoryView.SetItemToInventorySlot(playerInventorySlots[firstUnoccupiedIndex], firstUnoccupiedIndex);
+                }
+                return true;
+            }
+
+            return false;
         }
 
         public void TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE equipmentSlotType, GameItemInstanceModel gameItemInstance)
@@ -76,9 +115,14 @@ namespace Common.Player.Inventory
             if (playerEquipmentSlots[(int)equipmentSlotType].TrySetItemToSlot(gameItemInstance, true))
             {
                 //Clear from regular inventory slot
+                if(GetItemIndexInInventory(gameItemInstance, out int index))
+                {
+                    playerInventorySlots[index].ClearSlot();
+                    inventoryView.ClearInventorySlot(index);
+                }
 
                 onUpdatePlayerClothes.Invoke(gameItemInstance.ItemConfigAttached);
-                inventoryView.SetItemToEquipmentSlot(playerEquipmentSlots[(int)equipmentSlotType]);
+                inventoryView.SetItemToEquipmentSlot(playerEquipmentSlots[(int)equipmentSlotType], (int)equipmentSlotType);
             }
         }
 
@@ -100,6 +144,24 @@ namespace Common.Player.Inventory
             {
                 inventoryView.ToggleInventory();
             }
+        }
+
+        private bool GetItemIndexInInventory(GameItemInstanceModel gameItemInstance, out int index)
+        {
+            for (int i = 0; i < playerInventorySlots.Length; i++)
+            {
+                if(playerInventorySlots[i].GameItemInstance != null)
+                {
+                    if (playerInventorySlots[i].GameItemInstance.InstanceID == gameItemInstance.InstanceID)
+                    {
+                        index = i;
+                        return true;
+                    }
+                }
+            }
+
+            index = -1;
+            return false;
         }
         #endregion
     }

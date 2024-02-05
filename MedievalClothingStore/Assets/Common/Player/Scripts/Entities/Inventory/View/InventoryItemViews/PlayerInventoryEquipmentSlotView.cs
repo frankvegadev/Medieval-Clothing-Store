@@ -18,11 +18,14 @@ namespace Common.Player.Inventory.View.InventoryItemViews
 
             playerPreviewSlot.gameObject.SetActive(false);
 
-            if (model.GameItemInstance.ItemConfigAttached.AnimationConfig.StandDown.Sprite != null)
+            if (model.GameItemInstance != null)
             {
-                playerPreviewSlot.sprite = model.GameItemInstance.ItemConfigAttached.AnimationConfig.StandDown.Sprite;
-                playerPreviewSlot.color = model.GameItemInstance.ItemConfigAttached.SpriteColor;
-                playerPreviewSlot.gameObject.SetActive(true);
+                if (model.GameItemInstance.ItemConfigAttached.AnimationConfig.StandDown.Sprite != null)
+                {
+                    playerPreviewSlot.sprite = model.GameItemInstance.ItemConfigAttached.AnimationConfig.StandDown.Sprite;
+                    playerPreviewSlot.color = model.GameItemInstance.ItemConfigAttached.SpriteColor;
+                    playerPreviewSlot.gameObject.SetActive(true);
+                }
             }
         }
         #endregion

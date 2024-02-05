@@ -81,6 +81,18 @@ namespace Common.Player
             playerMovement.ConfigureInput(verticalAxisInputName, horizontalAxisInputName);
             playerInventory.ConfigureInput(toggleInventoryInputName);
         }
+
+        public bool TryAddItemToInventory(GameItemConfig gameItemConfig)
+        {
+            GameItemInstanceModel itemInstance = playerInventory.CreateItemInstance(gameItemConfig);
+
+            if(playerInventory.TryAddItemToInventory(itemInstance))
+            {
+                return true;
+            }
+
+            return false;
+        }
         #endregion
 
         #region PRIVATE_METHODS
