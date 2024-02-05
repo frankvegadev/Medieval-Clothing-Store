@@ -8,6 +8,7 @@ using Common.GameItems.Config;
 using Common.GameItems.Instance;
 
 using static Common.NPC.Animations.Constants.AnimationConstants;
+using static Common.GameItems.Constants.GameItemConstants;
 
 namespace Common.Player
 {
@@ -62,7 +63,7 @@ namespace Common.Player
         {
             playerView.Configure();
             playerMovement.Configure(HandleOnPlayerInputLeft, HandleOnPlayerInputRight, HandleOnPlayerInputUp, HandleOnPlayerInputDown, HandleOnPlayerInputStop);
-            playerInventory.Configure(HandlePlayerClothesChange, 
+            playerInventory.Configure(HandlePlayerClothesChange, HandlePlayerClothesClear,
                 onInventoryHolderStatus: (state) =>
                 {
                     enablePlayerMovement = !state;
@@ -104,6 +105,11 @@ namespace Common.Player
         private void HandlePlayerClothesChange(GameItemConfig itemConfig)
         {
             playerView.SetClothingPart(itemConfig);
+        }
+
+        private void HandlePlayerClothesClear(GAME_ITEM_SLOT_TYPE slotType)
+        {
+            playerView.ClearClothingPart(slotType);
         }
 
         private void HandleOnPlayerInputLeft()

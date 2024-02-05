@@ -44,6 +44,25 @@ namespace Common.Player.View
             }
         }
 
+        public void ClearClothingPart(GAME_ITEM_SLOT_TYPE slotType)
+        {
+            switch (slotType)
+            {
+                case GAME_ITEM_SLOT_TYPE.HAIR:
+                    hairAnimator.ClearConfig();
+                    break;
+                case GAME_ITEM_SLOT_TYPE.TORSO:
+                    torsoAnimator.ClearConfig();
+                    break;
+                case GAME_ITEM_SLOT_TYPE.LEGS:
+                    legsAnimator.ClearConfig();
+                    break;
+                case GAME_ITEM_SLOT_TYPE.FEET:
+                    feetAnimator.ClearConfig();
+                    break;
+            }
+        }
+
         public void StartStopAnimation()
         {
             baseAnimator.StartStopAnimation();

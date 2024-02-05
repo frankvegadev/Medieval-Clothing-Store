@@ -34,6 +34,7 @@ namespace Common.Player.Inventory
 
         #region ACTIONS
         private Action<GameItemConfig> onUpdatePlayerClothes = null;
+        private Action<GAME_ITEM_SLOT_TYPE> onClearPlayerClothes = null;
         #endregion
 
         #region PROPERTIES
@@ -49,9 +50,10 @@ namespace Common.Player.Inventory
         #endregion
 
         #region PUBLIC_METHODS
-        public void Configure(Action<GameItemConfig> onUpdatePlayerClothes, Action<bool> onInventoryHolderStatus = null)
+        public void Configure(Action<GameItemConfig> onUpdatePlayerClothes, Action<GAME_ITEM_SLOT_TYPE> onClearPlayerClothes, Action<bool> onInventoryHolderStatus = null)
         {
             this.onUpdatePlayerClothes = onUpdatePlayerClothes;
+            this.onClearPlayerClothes = onClearPlayerClothes;
 
             playerInventorySlots = new PlayerInventorySlotModel[playerSlots];
 
@@ -72,7 +74,7 @@ namespace Common.Player.Inventory
             TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE.LEGS, CreateItemInstance(defaultPlayerClothes.LegsConfig));
             TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE.FEET, CreateItemInstance(defaultPlayerClothes.FeetConfig));
 
-            inventoryView.Configure(playerEquipmentSlots, playerInventorySlots, onInventoryHolderStatus);
+            inventoryView.Configure(playerEquipmentSlots, playerInventorySlots, onInventoryHolderStatus, HandleItemClick);
             inventoryView.SetInventoryStatus(false);
         }
 
@@ -110,19 +112,67 @@ namespace Common.Player.Inventory
 
         public void TrySetItemToEquipmentSlot(GAME_ITEM_SLOT_TYPE equipmentSlotType, GameItemInstanceModel gameItemInstance)
         {
-            //Add swap later
+            //if they are the same instance id, swap item
+            if(GetItemFromEquipmentSlot(equipmentSlotType) != null)
+            {
+                if (GetItemFromEquipmentSlot(equipmentSlotType).InstanceID == gameItemInstance.InstanceID)
+                {
+                    //try unequip item
+
+                    //Add equipped item to inventory
+                    if (TryAddItemToInventory(GetItemFromEquipmentSlot(equipmentSlotType)))
+                    {
+                        //Clear slot in equipment inventory
+                        inventoryView.ClearEquipmentSlot(equipmentSlotType);
+                        playerEquipmentSlots[(int)equipmentSlotType].ClearSlot();
+                        onClearPlayerClothes.Invoke(equipmentSlotType);
+                    }
+                    else
+                    {
+                        //Couldn't unequip item
+                        Debug.LogWarning("Couldn't unequip item");
+                    }
+
+                    return;
+                }
+            }
 
             if (playerEquipmentSlots[(int)equipmentSlotType].TrySetItemToSlot(gameItemInstance, true))
             {
                 //Clear from regular inventory slot
                 if(GetItemIndexInInventory(gameItemInstance, out int index))
                 {
-                    playerInventorySlots[index].ClearSlot();
                     inventoryView.ClearInventorySlot(index);
+                    playerInventorySlots[index].ClearSlot();
                 }
 
                 onUpdatePlayerClothes.Invoke(gameItemInstance.ItemConfigAttached);
                 inventoryView.SetItemToEquipmentSlot(playerEquipmentSlots[(int)equipmentSlotType], (int)equipmentSlotType);
+            }
+            else
+            {
+                //Slot is occupied, neet to swap
+                if (GetItemIndexInInventory(gameItemInstance, out int index))
+                {
+                    //Clear slot in inventory, keep item instance
+                    playerInventorySlots[index].ClearSlot();
+                    inventoryView.ClearInventorySlot(index);
+
+                    //Add equipped item to inventory
+                    if (TryAddItemToInventory(GetItemFromEquipmentSlot(equipmentSlotType)))
+                    {
+                        //Clear slot in equipment inventory
+                        inventoryView.ClearEquipmentSlot(equipmentSlotType);
+                        playerEquipmentSlots[(int)equipmentSlotType].ClearSlot();
+
+                        TrySetItemToEquipmentSlot(equipmentSlotType, gameItemInstance);
+                    }
+                    else
+                    {
+                        //Couldn't swap item
+                        Debug.LogWarning("Couldn't swap item");
+                    }
+                }
             }
         }
 
@@ -133,6 +183,12 @@ namespace Common.Player.Inventory
         #endregion
 
         #region PRIVATE_METHODS
+        private void HandleItemClick(PlayerInventorySlotModel playerInventorySlotModel)
+        {
+            //Equip or unequipped item
+            TrySetItemToEquipmentSlot(playerInventorySlotModel.GameItemInstance.ItemConfigAttached.SlotType, playerInventorySlotModel.GameItemInstance);
+        }
+
         private void HandleInventoryInput()
         {
             if(string.IsNullOrEmpty(toggleInventoryInputName))
@@ -162,6 +218,11 @@ namespace Common.Player.Inventory
 
             index = -1;
             return false;
+        }
+
+        private GameItemInstanceModel GetItemFromEquipmentSlot(GAME_ITEM_SLOT_TYPE equipmentSlotType)
+        {
+            return playerEquipmentSlots[(int)equipmentSlotType].GameItemInstance;
         }
         #endregion
     }

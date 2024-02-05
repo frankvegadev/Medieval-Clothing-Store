@@ -54,6 +54,11 @@ namespace Common.NPC.Animations
 
         public void StartStopAnimation()
         {
+            if (currentConfig == null)
+            {
+                return;
+            }
+
             ANIM_STATES_NPC newState = ANIM_STATES_NPC.NONE;
 
             switch (currentAnimState)
@@ -107,6 +112,11 @@ namespace Common.NPC.Animations
 
         public void ChangeAnimationState(ANIM_STATES_NPC newState)
         {
+            if(currentConfig == null)
+            {
+                return;
+            }
+
             if(newState == currentAnimState)
             {
                 return;
@@ -145,6 +155,16 @@ namespace Common.NPC.Animations
         {
             currentColor = spriteColor;
             currentConfig = config;
+            RefreshNPC();
+        }
+
+        public void ClearConfig()
+        {
+            isAnimationTimerActive = false;
+            currentColor = Color.white;
+            currentConfig = null;
+            spriteRenderer.sprite = null;
+            spriteRenderer.color = Color.white;
         }
         #endregion
 
@@ -181,6 +201,33 @@ namespace Common.NPC.Animations
             }
 
             SetSprite(currentAnimSprites[animationIndex], currentColor);
+        }
+
+        private void RefreshNPC()
+        {
+            switch (currentAnimState)
+            {
+                case ANIM_STATES_NPC.STAND_LEFT:
+                case ANIM_STATES_NPC.STAND_RIGHT:
+                    SetSprite(currentConfig.StandRight, currentColor);
+                    break;
+                case ANIM_STATES_NPC.STAND_UP:
+                    SetSprite(currentConfig.StandUp, currentColor);
+                    break;
+                case ANIM_STATES_NPC.STAND_DOWN:
+                    SetSprite(currentConfig.StandDown, currentColor);
+                    break;
+                case ANIM_STATES_NPC.WALK_LEFT:
+                case ANIM_STATES_NPC.WALK_RIGHT:
+                    SetSprite(currentConfig.WalkRight[0], currentColor);
+                    break;
+                case ANIM_STATES_NPC.WALK_UP:
+                    SetSprite(currentConfig.WalkUp[0], currentColor);
+                    break;
+                case ANIM_STATES_NPC.WALK_DOWN:
+                    SetSprite(currentConfig.WalkDown[0], currentColor);
+                    break;
+            }
         }
         #endregion
     }

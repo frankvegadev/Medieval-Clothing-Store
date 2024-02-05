@@ -24,12 +24,15 @@ namespace Common.Player.Inventory.View
 
         #region ACTIONS
         private Action<bool> onInventoryHolderStatus = null;
+        private Action<PlayerInventorySlotModel> onBtnClick = null;
         #endregion
 
         #region PUBLIC_METHODS
-        public void Configure(PlayerInventorySlotModel[] playerEquipmentSlots, PlayerInventorySlotModel[] playerInventorySlots, Action<bool> onInventoryHolderStatus)
+        public void Configure(PlayerInventorySlotModel[] playerEquipmentSlots, PlayerInventorySlotModel[] playerInventorySlots, Action<bool> onInventoryHolderStatus,
+            Action<PlayerInventorySlotModel> onBtnClick)
         {
             this.onInventoryHolderStatus = onInventoryHolderStatus;
+            this.onBtnClick = onBtnClick;
 
             inventorySlots = new PlayerInventoryItemSlotView[playerInventorySlots.Length];
 
@@ -38,23 +41,23 @@ namespace Common.Player.Inventory.View
                 PlayerInventoryItemSlotView slotView = Instantiate(inventorySlotViewPrefab, inventorySlotsHolderTransform).GetComponent<PlayerInventoryItemSlotView>();
                 inventorySlots[i] = slotView;
 
-                slotView.Configure(playerInventorySlots[i]);
+                slotView.Configure(playerInventorySlots[i], onBtnClick);
             }
 
             for (int i = 0; i < equipmentSlots.Length; i++)
             {
-                equipmentSlots[i].Configure(playerEquipmentSlots[i]);
+                equipmentSlots[i].Configure(playerEquipmentSlots[i], onBtnClick);
             }
         }
 
         public void SetItemToInventorySlot(PlayerInventorySlotModel inventorySlotModel, int index)
         {
-            inventorySlots[index].Configure(inventorySlotModel);
+            inventorySlots[index].Configure(inventorySlotModel, onBtnClick);
         }
 
         public void SetItemToEquipmentSlot(PlayerInventorySlotModel inventorySlotModel, int index)
         {
-            equipmentSlots[index].Configure(inventorySlotModel);
+            equipmentSlots[index].Configure(inventorySlotModel, onBtnClick);
         }
 
         public void ClearInventorySlot(int index)
@@ -66,11 +69,15 @@ namespace Common.Player.Inventory.View
         {
             for (int i = 0; i < equipmentSlots.Length; i++)
             {
-                if (equipmentSlots[i].ModelAttached.GameItemInstance.ItemConfigAttached.SlotType == type)
+                if(equipmentSlots[i].ModelAttached != null)
                 {
-                    equipmentSlots[i].Clear();
-                    break;
+                    if (equipmentSlots[i].ModelAttached.GameItemInstance.ItemConfigAttached.SlotType == type)
+                    {
+                        equipmentSlots[i].Clear();
+                        break;
+                    }
                 }
+                
             }
         }
 

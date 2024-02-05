@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +13,10 @@ namespace Common.Player.Inventory.View.InventoryItemViews
         [SerializeField] private Image playerPreviewSlot = null;
         #endregion
 
-        #region PUBLIC_METHODS
-        public override void Configure(PlayerInventorySlotModel model)
+        #region OVERRIDE_METHODS
+        public override void Configure(PlayerInventorySlotModel model, Action<PlayerInventorySlotModel> onBtnClick)
         {
-            base.Configure(model);
+            base.Configure(model, onBtnClick);
 
             playerPreviewSlot.gameObject.SetActive(false);
 
@@ -27,6 +29,15 @@ namespace Common.Player.Inventory.View.InventoryItemViews
                     playerPreviewSlot.gameObject.SetActive(true);
                 }
             }
+        }
+
+        public override void Clear()
+        {
+            base.Clear();
+
+            playerPreviewSlot.sprite = null;
+            playerPreviewSlot.color = Color.white;
+            playerPreviewSlot.gameObject.SetActive(false);
         }
         #endregion
     }

@@ -1,3 +1,5 @@
+using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +12,7 @@ namespace Common.Player.Inventory.View.InventoryItemViews
         #region EXPOSED_FIELDS
         [SerializeField] protected Image itemIcon = null;
         [SerializeField] protected Image equippedIcon = null;
-        [SerializeField] protected Button itemBtn = null; // WIP
+        [SerializeField] protected Button itemBtn = null;
         #endregion
 
         #region PROTECTED_FIELDS
@@ -22,9 +24,12 @@ namespace Common.Player.Inventory.View.InventoryItemViews
         #endregion
 
         #region PUBLIC_METHODS
-        public virtual void Configure(PlayerInventorySlotModel model)
+        public virtual void Configure(PlayerInventorySlotModel model, Action<PlayerInventorySlotModel> onBtnClick)
         {
             modelAttached = model;
+
+            itemBtn.onClick.RemoveAllListeners();
+            itemBtn.interactable = false;
 
             itemIcon.gameObject.SetActive(false);
 
@@ -36,6 +41,9 @@ namespace Common.Player.Inventory.View.InventoryItemViews
                     itemIcon.color = modelAttached.GameItemInstance.ItemConfigAttached.SpriteColor;
                     itemIcon.gameObject.SetActive(true);
                 }
+
+                itemBtn.onClick.AddListener(() => { onBtnClick.Invoke(modelAttached); });
+                itemBtn.interactable = true;
             }
 
             equippedIcon.gameObject.SetActive(modelAttached.Equipped);
@@ -48,6 +56,9 @@ namespace Common.Player.Inventory.View.InventoryItemViews
             itemIcon.color = Color.white;
             equippedIcon.gameObject.SetActive(false);
             itemIcon.gameObject.SetActive(false);
+
+            itemBtn.onClick.RemoveAllListeners();
+            itemBtn.interactable = false;
         }
         #endregion
     }

@@ -683,6 +683,17 @@ MonoBehaviour:
   playerController: {fileID: 484299477}
   testItemConfigs:
   - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+  - {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
 --- !u!1001 &799640565
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -46,6 +46,11 @@ namespace Common.Player.Inventory.Model
             return true;
         }
 
+        public void UnequipItem()
+        {
+            equipped = false;
+        }
+
         public bool TryEquipItem()
         {
             //No item to equip
