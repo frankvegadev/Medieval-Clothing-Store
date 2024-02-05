@@ -34,8 +34,7 @@ namespace Common.Player.Controller.Movement.Camera
             {
                 cameraTransform.position += new Vector3(cameraMoveSpeed * Time.deltaTime, 0, 0);
             }
-
-            if (playerTransform.position.x < cameraTransform.position.x - cameraBoxBoundsOffsetX)
+            else if (playerTransform.position.x < cameraTransform.position.x - cameraBoxBoundsOffsetX)
             {
                 cameraTransform.position -= new Vector3(cameraMoveSpeed * Time.deltaTime, 0, 0);
             }
@@ -44,8 +43,7 @@ namespace Common.Player.Controller.Movement.Camera
             {
                 cameraTransform.position += new Vector3(0, cameraMoveSpeed * Time.deltaTime, 0);
             }
-
-            if (playerTransform.position.y < cameraTransform.position.y - cameraBoxBoundsOffsetY)
+            else if (playerTransform.position.y < cameraTransform.position.y - cameraBoxBoundsOffsetY)
             {
                 cameraTransform.position -= new Vector3(0, cameraMoveSpeed * Time.deltaTime, 0);
             }
