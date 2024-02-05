@@ -1,8 +1,9 @@
 using UnityEngine;
 
-using Common.Player.Controller.Inventory.Model;
+using Common.Player.Inventory.Model;
+using Common.Player.Inventory.View.InventoryItemViews;
 
-namespace Common.Player.Controller.Inventory.View
+namespace Common.Player.Inventory.View
 {
     public class PlayerInventoryView : MonoBehaviour
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 
-using Common.Player.Controller.Movement;
-using Common.Player.Controller.Inventory.Handler;
+using Common.Player.Movement;
+using Common.Player.Inventory;
 using Common.Player.View;
 
 using Common.GameItems.Config;

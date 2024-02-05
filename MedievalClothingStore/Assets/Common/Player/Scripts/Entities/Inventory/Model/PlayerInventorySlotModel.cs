@@ -2,7 +2,7 @@ using UnityEngine;
 
 using Common.GameItems.Instance;
 
-namespace Common.Player.Controller.Inventory.Model
+namespace Common.Player.Inventory.Model
 {
     public class PlayerInventorySlotModel
     {

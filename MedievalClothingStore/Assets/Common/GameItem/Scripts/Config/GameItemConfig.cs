@@ -1,6 +1,6 @@
 using UnityEngine;
 
-using Common.NPC.Animations;
+using Common.NPC.Animations.Config;
 
 using static Common.GameItems.Constants.GameItemConstants;
 

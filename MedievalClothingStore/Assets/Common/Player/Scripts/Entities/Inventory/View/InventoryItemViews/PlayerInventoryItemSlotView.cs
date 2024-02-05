@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-using Common.Player.Controller.Inventory.Model;
+using Common.Player.Inventory.Model;
 
-namespace Common.Player.Controller.Inventory.View
+namespace Common.Player.Inventory.View.InventoryItemViews
 {
     public class PlayerInventoryItemSlotView : MonoBehaviour
     {

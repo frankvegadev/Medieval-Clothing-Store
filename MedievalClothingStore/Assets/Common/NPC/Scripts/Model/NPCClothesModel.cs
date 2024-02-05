@@ -4,7 +4,7 @@ using Common.GameItems.Config;
 
 using static Common.GameItems.Constants.GameItemConstants;
 
-namespace Common.NPC.Clothes
+namespace Common.NPC.Model
 {
     [System.Serializable]
     public class NPCClothesModel

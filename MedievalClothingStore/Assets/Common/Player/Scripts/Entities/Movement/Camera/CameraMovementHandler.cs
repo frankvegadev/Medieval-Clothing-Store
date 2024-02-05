@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.Player.Controller.Movement.Camera
+namespace Common.Player.Movement.Camera
 {
     public class CameraMovementHandler : MonoBehaviour
     {

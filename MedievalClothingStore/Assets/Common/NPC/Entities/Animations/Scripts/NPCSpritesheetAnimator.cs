@@ -1,5 +1,7 @@
 using UnityEngine;
 
+using Common.NPC.Animations.Config;
+
 using static Common.NPC.Animations.Constants.AnimationConstants;
 
 namespace Common.NPC.Animations

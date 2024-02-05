@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.NPC.Animations
+namespace Common.NPC.Animations.Config
 {
     [CreateAssetMenu(fileName = "NPCAnimationConfig_", menuName = "Game/Common/NPCAnimationConfig", order = 1)]
     public class NPCSpritesheetAnimationConfig : ScriptableObject

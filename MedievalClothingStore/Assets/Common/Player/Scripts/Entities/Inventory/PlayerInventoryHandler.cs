@@ -5,14 +5,14 @@ using UnityEngine;
 using Common.GameItems.Config;
 using Common.GameItems.Instance;
 
-using Common.NPC.Clothes;
+using Common.NPC.Model;
 
-using Common.Player.Controller.Inventory.Model;
-using Common.Player.Controller.Inventory.View;
+using Common.Player.Inventory.Model;
+using Common.Player.Inventory.View;
 
 using static Common.GameItems.Constants.GameItemConstants;
 
-namespace Common.Player.Controller.Inventory.Handler
+namespace Common.Player.Inventory
 {
     public class PlayerInventoryHandler : MonoBehaviour
     {

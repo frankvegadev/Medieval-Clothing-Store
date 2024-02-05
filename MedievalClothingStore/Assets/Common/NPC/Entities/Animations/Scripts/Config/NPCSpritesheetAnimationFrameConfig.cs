@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Common.NPC.Animations
+namespace Common.NPC.Animations.Config
 {
     [System.Serializable]
     public class NPCSpritesheetAnimationFrameConfig
