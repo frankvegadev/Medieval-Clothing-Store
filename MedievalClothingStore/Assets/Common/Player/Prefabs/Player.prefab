@@ -563,8 +563,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cee3092961ea824180d580fdd310019, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryView: {fileID: 0}
   defaultPlayerClothes:
-    hairConfig: {fileID: 11400000, guid: c36bcb306a216844a87d3bc029daadea, type: 2}
+    hairConfig: {fileID: 11400000, guid: 1bd034b7bda13f84bb2acbf6e6166a37, type: 2}
     torsoConfig: {fileID: 11400000, guid: 584be937eae335b4ebb8ee1076b1d021, type: 2}
     legsConfig: {fileID: 11400000, guid: 19bb142a7d4ab884089423a9614212ac, type: 2}
     feetConfig: {fileID: 11400000, guid: 59cafa2be46534a498ad21cfd183f2d3, type: 2}

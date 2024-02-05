@@ -1,10 +1,11 @@
 using UnityEngine;
 
 using Common.Player.Controller.Movement;
-using Common.Player.Controller.Inventory;
+using Common.Player.Controller.Inventory.Handler;
 using Common.Player.View;
 
 using Common.GameItems.Config;
+using Common.GameItems.Instance;
 
 using static Common.NPC.Animations.Constants.AnimationConstants;
 
@@ -55,9 +56,9 @@ namespace Common.Player
         #endregion
 
         #region PRIVATE_METHODS
-        private void SetPlayerClothingPart(GameItemConfig itemConfig)
+        private void SetPlayerClothingPart(GameItemInstanceModel itemInstance)
         {
-            playerInventory.SetPlayerClothingPart(itemConfig);
+            playerInventory.TrySetItemToEquipmentSlot(itemInstance.ItemConfigAttached.SlotType, itemInstance);
         }
 
         private void HandlePlayerClothesChange(GameItemConfig itemConfig)

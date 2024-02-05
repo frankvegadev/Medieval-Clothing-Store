@@ -15,5 +15,6 @@ MonoBehaviour:
   itemID: item_hair_short_white
   slotType: 0
   price: 50
-  previewSprite: {fileID: 2018987321, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+  previewSprite: {fileID: 2018987321, guid: 32478da936ec21d4a8ca3454e11ab2fc, type: 3}
   animationConfig: {fileID: 11400000, guid: ccbcc3b0f0529a3479a83e33f62581da, type: 2}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}

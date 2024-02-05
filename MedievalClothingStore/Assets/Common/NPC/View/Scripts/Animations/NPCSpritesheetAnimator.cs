@@ -101,8 +101,6 @@ namespace Common.NPC.Animations
                     currentAnimState = ANIM_STATES_NPC.STAND_DOWN;
                     break;
             }
-
-            Debug.Log("New state: " + currentAnimState);
         }
 
         public void ChangeAnimationState(ANIM_STATES_NPC newState)
@@ -113,8 +111,6 @@ namespace Common.NPC.Animations
             }
 
             currentAnimState = newState;
-
-            Debug.Log("New state: " + currentAnimState);
 
             isAnimationTimerActive = false;
 
