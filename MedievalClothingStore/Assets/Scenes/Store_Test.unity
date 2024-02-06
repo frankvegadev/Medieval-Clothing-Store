@@ -15358,10 +15358,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Press "I" to open Inventory
+  m_text: '- Press "I" to open/close Inventory
 
-    - You can click in your items to equip/unequip
-    them
+    - You can click in your items
+    to equip/unequip them
 
     - Press "E" to interact with world objects'
   m_isRightToLeft: 0
