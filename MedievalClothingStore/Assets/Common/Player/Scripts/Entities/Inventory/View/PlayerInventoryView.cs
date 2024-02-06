@@ -5,7 +5,7 @@ using UnityEngine;
 using Common.Player.Inventory.Model;
 using Common.Player.Inventory.View.InventoryItemViews;
 
-using static Common.GameItems.Constants.GameItemConstants;
+using static Common.GameItems.Constants.GameItemEnums;
 
 namespace Common.Player.Inventory.View
 {

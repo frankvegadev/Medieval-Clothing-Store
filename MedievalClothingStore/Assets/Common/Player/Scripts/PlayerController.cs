@@ -1,15 +1,21 @@
+using System;
+
 using UnityEngine;
 
 using Common.Player.Movement;
 using Common.Player.Inventory;
 using Common.Player.View;
 using Common.Player.Currencies;
+using Common.Player.Interaction;
+using Common.Player.Interaction.Collider;
 
 using Common.GameItems.Config;
 using Common.GameItems.Instance;
 
+using Game.Store.Config;
+
 using static Common.NPC.Animations.Constants.AnimationConstants;
-using static Common.GameItems.Constants.GameItemConstants;
+using static Common.GameItems.Constants.GameItemEnums;
 
 namespace Common.Player
 {
@@ -20,7 +26,9 @@ namespace Common.Player
         [SerializeField] private PlayerMovementHandler playerMovement = null;
         [SerializeField] private PlayerInventoryHandler playerInventory = null;
         [SerializeField] private PlayerCurrenciesHandler playerCurrencies = null;
+        [SerializeField] private InteractionController interactionController = null;
         [SerializeField] private PlayerView playerView = null;
+        [SerializeField] private PlayerInteractionCheck playerInteractionCheck = null;
         #endregion
 
         #region PRIVATE_FIELDS
@@ -61,10 +69,11 @@ namespace Common.Player
         #endregion
 
         #region PUBLIC_METHODS
-        public void Configure()
+        public void Configure(Action<StoreConfig> onOpenBuyMenu, Action<GameItemInstanceModel[]> onOpenSellMenu, Action onCloseAllStoreMenus)
         {
             playerView.Configure();
             playerMovement.Configure(HandleOnPlayerInputLeft, HandleOnPlayerInputRight, HandleOnPlayerInputUp, HandleOnPlayerInputDown, HandleOnPlayerInputStop);
+
             playerInventory.Configure(HandlePlayerClothesChange, HandlePlayerClothesClear,
                 onInventoryHolderStatus: (state) =>
                 {
@@ -76,13 +85,28 @@ namespace Common.Player
                     }
                 });
 
+            interactionController.Configure(onOpenBuyMenu, onOpenSellMenu, GetValidInventoryItems,
+                onInteractionHolderStatus: (state) =>
+                {
+                    playerInventory.SetInventoryInputStatus(!state);
+
+                    if(state)
+                    {
+                        playerInventory.SetInventoryViewStatus(false);
+                        onCloseAllStoreMenus.Invoke();
+                    }
+                });
+
+            playerInteractionCheck.Configure(interactionController.SetupInteractionPanel, interactionController.ClearInteractionPanel);
+
             playerView.SetAnimationState(ANIM_STATES_NPC.STAND_DOWN);
         }
 
-        public void ConfigureInput(string verticalAxisInputName, string horizontalAxisInputName, string toggleInventoryInputName)
+        public void ConfigureInput(string verticalAxisInputName, string horizontalAxisInputName, string toggleInventoryInputName, string interactInputName)
         {
             playerMovement.ConfigureInput(verticalAxisInputName, horizontalAxisInputName);
             playerInventory.ConfigureInput(toggleInventoryInputName);
+            interactionController.ConfigureInput(interactInputName);
         }
 
         public bool TryAddItemToInventory(GameItemConfig gameItemConfig)

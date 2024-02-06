@@ -3,7 +3,7 @@ using UnityEngine;
 using Common.GameItems.Config;
 using Common.NPC.Animations;
 
-using static Common.GameItems.Constants.GameItemConstants;
+using static Common.GameItems.Constants.GameItemEnums;
 using static Common.NPC.Animations.Constants.AnimationConstants;
 
 namespace Common.Player.View

@@ -2,7 +2,7 @@ using UnityEngine;
 
 using Common.NPC.Animations.Config;
 
-using static Common.GameItems.Constants.GameItemConstants;
+using static Common.GameItems.Constants.GameItemEnums;
 
 namespace Common.GameItems.Config
 {

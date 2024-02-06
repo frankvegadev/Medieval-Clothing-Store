@@ -11,24 +11,18 @@ namespace Game.Store
     public class StoreController : MonoBehaviour
     {
         #region EXPOSED_FIELDS
-        [SerializeField] private StoreConfig storeConfig = null; //Store config is assigned when interacted, this is temporary
         [SerializeField] private StoreView storeView = null;
-        #endregion
-
-        #region PRIVATE_FIELDS
-        private PurchaseController purchaseController = null;
         #endregion
 
         #region PUBLIC_METHODS
         public void Configure(PurchaseController purchaseController)
         {
-            this.purchaseController = purchaseController;
-            storeView.Configure(storeConfig, purchaseController.TryBuyItem, purchaseController.TrySellItem);
+            storeView.Configure(purchaseController.TryBuyItem, purchaseController.TrySellItem);
         }
 
-        public void DisplayBuyMenu()
+        public void DisplayBuyMenu(StoreConfig storeConfig)
         {
-            storeView.DisplayBuyMenu();
+            storeView.DisplayBuyMenu(storeConfig);
         }
 
         public void DisplaySellMenu(GameItemInstanceModel[] sellableItems)

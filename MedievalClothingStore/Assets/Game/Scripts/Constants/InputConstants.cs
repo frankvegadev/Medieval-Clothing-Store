@@ -6,6 +6,7 @@ namespace Game.Constants
         public static string movementAxisXInput = "Horizontal";
         public static string movementAxisYInput = "Vertical";
         public static string toggleInventoryInput = "Inventory";
+        public static string interactInput = "Interact";
         #endregion
     }
 }

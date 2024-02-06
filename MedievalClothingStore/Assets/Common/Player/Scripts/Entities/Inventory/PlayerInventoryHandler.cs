@@ -11,7 +11,7 @@ using Common.NPC.Model;
 using Common.Player.Inventory.Model;
 using Common.Player.Inventory.View;
 
-using static Common.GameItems.Constants.GameItemConstants;
+using static Common.GameItems.Constants.GameItemEnums;
 
 namespace Common.Player.Inventory
 {
@@ -27,6 +27,8 @@ namespace Common.Player.Inventory
         private PlayerInventorySlotModel[] playerInventorySlots = null;
 
         private string toggleInventoryInputName = string.Empty;
+
+        private bool enableInput = false;
         #endregion
 
         #region CONSTANTS
@@ -46,6 +48,11 @@ namespace Common.Player.Inventory
         // Update is called once per frame
         void Update()
         {
+            if(!enableInput)
+            {
+                return;
+            }
+
             HandleInventoryInput();
         }
         #endregion
@@ -230,6 +237,16 @@ namespace Common.Player.Inventory
             }
 
             return items.ToArray();
+        }
+
+        public void SetInventoryInputStatus(bool status)
+        {
+            enableInput = status;
+        }
+
+        public void SetInventoryViewStatus(bool status)
+        {
+            inventoryView.SetInventoryStatus(status);
         }
         #endregion
 

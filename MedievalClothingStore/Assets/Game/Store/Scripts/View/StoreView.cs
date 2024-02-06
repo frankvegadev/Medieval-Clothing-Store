@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Pool;
 
 using Common.GameItems.Instance;
@@ -18,10 +19,10 @@ namespace Game.Store.View
         [SerializeField] private GameObject holder = null;
         [SerializeField] private Transform storeItemViewsHolder = null;
         [SerializeField] private GameObject storeItemViewPrefabs = null;
+        [SerializeField] private Button closeBtn = null;
         #endregion
 
         #region PRIVATE_FIELDS
-        private StoreConfig currentStoreConfig = null;
         private ObjectPool<StoreItemView> storeItemViewPool = null;
         private List<StoreItemView> storeItemsActive = null;
         #endregion
@@ -32,27 +33,31 @@ namespace Game.Store.View
         #endregion
 
         #region PUBLIC_METHODS
-        public void Configure(StoreConfig storeConfig, Func<BuyableItemConfig, bool> onBuyItem, Func<GameItemInstanceModel, bool> onSellItem)
+        public void Configure(Func<BuyableItemConfig, bool> onBuyItem, Func<GameItemInstanceModel, bool> onSellItem)
         {
-            this.currentStoreConfig = storeConfig;
             this.onSellItem = onSellItem;
             this.onBuyItem = onBuyItem;
 
             storeItemsActive = new List<StoreItemView>();
             storeItemViewPool = new ObjectPool<StoreItemView>(CreateStoreItemViewInstance, OnTakeStoreItemFromPool, OnReturnedStoreItemToPool, OnDestroyStoreItemPoolObject);
 
+            closeBtn.onClick.RemoveAllListeners();
+            closeBtn.onClick.AddListener(() => { SetViewStatus(false); });
+
             SetViewStatus(false);
         }
 
-        public void DisplayBuyMenu()
+        public void DisplayBuyMenu(StoreConfig storeConfig)
         {
             ReleaseAllActivePoolObjects();
-            for (int i = 0; i < currentStoreConfig.BuyableItems.Length; i++)
+            for (int i = 0; i < storeConfig.BuyableItems.Length; i++)
             {
                 StoreItemView itemView = storeItemViewPool.Get();
                 storeItemsActive.Add(itemView);
-                itemView.ConfigureBuyView(currentStoreConfig.BuyableItems[i], onBuyItem);
+                itemView.ConfigureBuyView(storeConfig.BuyableItems[i], onBuyItem);
             }
+
+            SetViewStatus(true);
         }
 
         public void DisplaySellMenu(GameItemInstanceModel[] sellableItems)
@@ -64,6 +69,8 @@ namespace Game.Store.View
                 storeItemsActive.Add(itemView);
                 itemView.ConfigureSellView(sellableItems[i], onSellItem);
             }
+
+            SetViewStatus(true);
         }
 
         public void ToggleView()

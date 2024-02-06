@@ -31,27 +31,18 @@ namespace Game
         {
             InitGame();
         }
-
-        // Update is called once per frame
-        void Update()
-        {
-            //Temporary
-            /*if(Input.GetButtonDown("Jump"))
-            {
-                storeController.ToggleView();
-                storeController.DisplaySellMenu(playerController.GetValidInventoryItems());
-            }*/
-        }
         #endregion
 
         #region PRIVATE_METHODS
         private void InitGame()
         {
-            playerController.Configure();
+            playerController.Configure(storeController.DisplayBuyMenu, storeController.DisplaySellMenu, onCloseAllStoreMenus : () => { storeController.SetViewStatus(false); });
             purchaseController.Configure(playerController);
             storeController.Configure(purchaseController);
 
-            playerController.ConfigureInput(InputConstants.movementAxisYInput, InputConstants.movementAxisXInput, InputConstants.toggleInventoryInput);
+            playerController.ConfigureInput(InputConstants.movementAxisYInput, InputConstants.movementAxisXInput, InputConstants.toggleInventoryInput,
+                InputConstants.interactInput);
+
             GiftItemsToPlayer();
 
             playerController.AddCoins(550);
