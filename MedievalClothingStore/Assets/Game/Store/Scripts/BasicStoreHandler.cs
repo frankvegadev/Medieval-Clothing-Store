@@ -13,11 +13,10 @@ namespace Game.Store
     {
         #region EXPOSED_FIELDS
         [SerializeField] private StoreConfig storeConfig = null;
-        [SerializeField] private InteractionEnums.INTERACTION_OPTIONS[] interactionOptionsExposed = null;
         #endregion
 
         #region INTERFACE_FIELDS
-        public InteractionEnums.INTERACTION_OPTIONS[] interactionOptions => interactionOptionsExposed;
+        public InteractionEnums.INTERACTION_OPTIONS[] interactionOptions => storeConfig.InteractionOptions;
         #endregion
 
         #region PUBLIC_METHODS
@@ -35,7 +34,7 @@ namespace Game.Store
                 }
                 else
                 {
-                    newParameter = ((InteractionEnums.INTERACTION_OPTIONS)i, null);
+                    newParameter = (interactionOptions[i], null);
                 }
 
                 optionParametersList.Add(newParameter);

@@ -70,6 +70,8 @@ namespace Common.Player.Interaction
             interactionView.SetInteractionOptions(optionsEnum);
 
             isInValidInteractableObject = true;
+
+            HandleOpeningDialogue();
         }
 
         public void ClearInteractionPanel()
@@ -124,9 +126,22 @@ namespace Common.Player.Interaction
 
         private void HandleTalkInteraction()
         {
-            Debug.Log("Begin Talk.");
+            StoreConfig storeConfig = interactionOptionsParams[InteractionEnums.INTERACTION_OPTIONS.BUY_ITEMS] as StoreConfig;
 
-            interactionView.SetViewStatus(false);
+            if (storeConfig != null)
+            {
+                interactionView.SetInteractionDialogue(storeConfig.DialogueTalkLine, storeConfig.DialogueActorName);
+            }
+        }
+
+        private void HandleOpeningDialogue()
+        {
+            StoreConfig storeConfig = interactionOptionsParams[InteractionEnums.INTERACTION_OPTIONS.BUY_ITEMS] as StoreConfig;
+
+            if (storeConfig != null)
+            {
+                interactionView.SetInteractionDialogue(storeConfig.DialogueOpeningLine, storeConfig.DialogueActorName);
+            }
         }
         #endregion
     }

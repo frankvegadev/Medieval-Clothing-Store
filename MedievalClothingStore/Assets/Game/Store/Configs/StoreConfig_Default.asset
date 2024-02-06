@@ -15,6 +15,7 @@ MonoBehaviour:
   buyableItems:
   - {fileID: 11400000, guid: bafacf038a08da040acedd6259623948, type: 2}
   - {fileID: 11400000, guid: bafacf038a08da040acedd6259623948, type: 2}
-  canPlayerBuyItems: 1
-  canPlayerSellItems: 0
-  enableDialogue: 0
+  interactionOptions: 000000000100000003000000
+  dialogueActorName: 'Bob:'
+  dialogueOpeningLine: Hello there stranger!
+  dialogueTalkLine: Hope you like my shop! I got plenty of items for sale!

@@ -14,6 +14,7 @@ namespace Common.Player.Interaction.View
         #region EXPOSED_FIELDS
         [SerializeField] private GameObject holder = null;
         [SerializeField] private TMP_Text interactionText = null;
+        [SerializeField] private TMP_Text interactionTextAlt = null;
 
         [Header("Interaction Option Views Config")]
         [SerializeField] private InteractionOptionView cancelOptionView = null;
@@ -45,7 +46,7 @@ namespace Common.Player.Interaction.View
 
         public void SetInteractionOptions(InteractionEnums.INTERACTION_OPTIONS[] options)
         {
-            interactionText.text = defaultInteractionText;
+            SetInteractionDialogue(defaultInteractionText, null);
 
             SetAllInteractionOptionsStatus(false);
 
@@ -64,6 +65,24 @@ namespace Common.Player.Interaction.View
         {
             holder.SetActive(status);
             onInteractionHolderStatus.Invoke(status);
+        }
+
+        public void SetInteractionDialogue(string mainText, string altText)
+        {
+            interactionText.gameObject.SetActive(false);
+            interactionTextAlt.gameObject.SetActive(false);
+
+            if (!string.IsNullOrEmpty(mainText))
+            {
+                interactionText.text = mainText;
+                interactionText.gameObject.SetActive(true);
+            }
+
+            if (!string.IsNullOrEmpty(altText))
+            {
+                interactionTextAlt.text = altText;
+                interactionTextAlt.gameObject.SetActive(true);
+            }
         }
         #endregion
 

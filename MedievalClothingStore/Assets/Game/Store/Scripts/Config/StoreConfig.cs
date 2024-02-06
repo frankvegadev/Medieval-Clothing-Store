@@ -1,6 +1,7 @@
 using UnityEngine;
 
 using Common.Purchases.Config;
+using Common.Player.Interaction.Enums;
 
 namespace Game.Store.Config
 {
@@ -9,16 +10,18 @@ namespace Game.Store.Config
     {
         #region EXPOSED_FIELDS
         [SerializeField] private BuyableItemConfig[] buyableItems = null;
-        [SerializeField] private bool canPlayerBuyItems = false;
-        [SerializeField] private bool canPlayerSellItems = false;
-        [SerializeField] private bool enableDialogue = false;
+        [SerializeField] private InteractionEnums.INTERACTION_OPTIONS[] interactionOptions = null;
+        [SerializeField] private string dialogueActorName = string.Empty;
+        [SerializeField] private string dialogueOpeningLine = string.Empty;
+        [SerializeField] private string dialogueTalkLine = string.Empty;
         #endregion
 
         #region PROPERTIES
         public BuyableItemConfig[] BuyableItems { get => buyableItems; }
-        public bool CanPlayerBuyItems { get => canPlayerBuyItems; }
-        public bool CanPlayerSellItems { get => canPlayerSellItems; }
-        public bool EnableDialogue { get => enableDialogue; }
+        public string DialogueOpeningLine { get => dialogueOpeningLine; }
+        public InteractionEnums.INTERACTION_OPTIONS[] InteractionOptions { get => interactionOptions;  }
+        public string DialogueTalkLine { get => dialogueTalkLine; }
+        public string DialogueActorName { get => dialogueActorName; }
         #endregion
     }
 }
