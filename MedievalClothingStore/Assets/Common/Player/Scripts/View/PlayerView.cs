@@ -11,6 +11,9 @@ namespace Common.Player.View
     public class PlayerView : MonoBehaviour
     {
         #region EXPOSED_FIELDS
+        [Header("Audio Config")]
+        [SerializeField] private AudioSource audioSource = null;
+
         [Header("Spritesheet Config")]
         [SerializeField] private NPCSpritesheetAnimator baseAnimator = null;
         [SerializeField] private NPCSpritesheetAnimator hairAnimator = null;
@@ -94,7 +97,7 @@ namespace Common.Player.View
         #region PRIVATE_METHODS
         private void ConfigureNPCSpritesheetAnimators()
         {
-            baseAnimator.Configure();
+            baseAnimator.Configure(audioSource);
             hairAnimator.Configure();
             torsoAnimator.Configure();
             legsAnimator.Configure();

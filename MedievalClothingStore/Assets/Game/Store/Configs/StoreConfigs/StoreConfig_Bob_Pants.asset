@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 763aa7b04fbdf234d913726c3a5ab237, type: 3}
+  m_Name: StoreConfig_Bob_Pants
+  m_EditorClassIdentifier: 
+  buyableItems:
+  - {fileID: 11400000, guid: c33189ca9e8864541818676914d8f8b8, type: 2}
+  - {fileID: 11400000, guid: d44f0125359f25d4c832495632fc7822, type: 2}
+  - {fileID: 11400000, guid: 0a6bd02240d4757478a0b45ebd629fc9, type: 2}
+  interactionOptions: 0000000001000000
+  dialogueActorName: 
+  dialogueOpeningLine: 
+  dialogueTalkLine: 

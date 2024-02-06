@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: GameItemConfig_Torso_Shirt_Green
   m_EditorClassIdentifier: 
   itemID: item_torso_shirt_green
+  displayTitle: Green Shirt
   slotType: 1
-  price: 100
-  previewSprite: {fileID: -842587927, guid: 9d9e24df182f84e4eb260c1a42a12e77, type: 3}
+  sellPrice: 74
+  previewSprite: {fileID: -842587927, guid: 3d6179dc1ea793a4ca15ef2940c23ad6, type: 3}
   animationConfig: {fileID: 11400000, guid: fc16e70c7eff42e468ae9bc5065e9ac9, type: 2}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}

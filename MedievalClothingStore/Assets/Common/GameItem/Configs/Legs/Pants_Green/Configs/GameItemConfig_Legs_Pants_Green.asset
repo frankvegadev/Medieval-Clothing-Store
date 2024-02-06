@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: GameItemConfig_Legs_Pants_Green
   m_EditorClassIdentifier: 
   itemID: item_legs_pants_green
+  displayTitle: Long Red Pants
   slotType: 2
-  price: 120
-  previewSprite: {fileID: 665449729, guid: ff36c5ce56dbdd242b45f9ee1b516f41, type: 3}
+  sellPrice: 35
+  previewSprite: {fileID: 665449729, guid: 0f58aa11ae8468d4d8fad686c238079f, type: 3}
   animationConfig: {fileID: 11400000, guid: 945cff99bc147c34ab25b28cea480f07, type: 2}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}

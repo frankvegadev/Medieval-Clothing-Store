@@ -32,6 +32,10 @@ namespace Game.Store
                 {
                     newParameter = (InteractionEnums.INTERACTION_OPTIONS.BUY_ITEMS, storeConfig);
                 }
+                else if(interactionOptions[i] == InteractionEnums.INTERACTION_OPTIONS.TALK)
+                {
+                    newParameter = (InteractionEnums.INTERACTION_OPTIONS.TALK, storeConfig);
+                }
                 else
                 {
                     newParameter = (interactionOptions[i], null);

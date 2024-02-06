@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: GameItemConfig_Hair_Short_Blonde
   m_EditorClassIdentifier: 
   itemID: item_hair_short_blonde
-  displayTitle: 
+  displayTitle: Blonde Short Hair
   slotType: 0
   sellPrice: 55
-  previewSprite: {fileID: 2018987321, guid: 3ea8f9dbb4657f34a83cb5f8d996087e, type: 3}
+  previewSprite: {fileID: 2018987321, guid: 32478da936ec21d4a8ca3454e11ab2fc, type: 3}
   animationConfig: {fileID: 11400000, guid: ccbcc3b0f0529a3479a83e33f62581da, type: 2}
   spriteColor: {r: 0.9245283, g: 0.89858073, b: 0.58873266, a: 1}

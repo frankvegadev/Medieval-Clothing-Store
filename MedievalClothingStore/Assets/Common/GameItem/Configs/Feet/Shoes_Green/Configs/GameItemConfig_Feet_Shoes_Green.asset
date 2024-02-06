@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: GameItemConfig_Feet_Shoes_Green
   m_EditorClassIdentifier: 
   itemID: item_feet_shoes_green
+  displayTitle: Green Shoes
   slotType: 3
-  price: 150
-  previewSprite: {fileID: 1211777738, guid: 0a8478159429cdc4aa11b26fc802d9f9, type: 3}
+  sellPrice: 100
+  previewSprite: {fileID: 1211777738, guid: 73475cc8ae8879645835781c82a52f5d, type: 3}
   animationConfig: {fileID: 11400000, guid: 7f496ba5b2fbc5540ab14ce7676e2c39, type: 2}
+  spriteColor: {r: 1, g: 1, b: 1, a: 1}

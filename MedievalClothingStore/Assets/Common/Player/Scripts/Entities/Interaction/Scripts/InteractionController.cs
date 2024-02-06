@@ -126,21 +126,27 @@ namespace Common.Player.Interaction
 
         private void HandleTalkInteraction()
         {
-            StoreConfig storeConfig = interactionOptionsParams[InteractionEnums.INTERACTION_OPTIONS.BUY_ITEMS] as StoreConfig;
-
-            if (storeConfig != null)
+            if (interactionOptionsParams.ContainsKey(InteractionEnums.INTERACTION_OPTIONS.TALK))
             {
-                interactionView.SetInteractionDialogue(storeConfig.DialogueTalkLine, storeConfig.DialogueActorName);
+                StoreConfig storeConfig = interactionOptionsParams[InteractionEnums.INTERACTION_OPTIONS.TALK] as StoreConfig;
+
+                if (storeConfig != null)
+                {
+                    interactionView.SetInteractionDialogue(storeConfig.DialogueTalkLine, storeConfig.DialogueActorName);
+                }
             }
         }
 
         private void HandleOpeningDialogue()
         {
-            StoreConfig storeConfig = interactionOptionsParams[InteractionEnums.INTERACTION_OPTIONS.BUY_ITEMS] as StoreConfig;
-
-            if (storeConfig != null)
+            if(interactionOptionsParams.ContainsKey(InteractionEnums.INTERACTION_OPTIONS.TALK))
             {
-                interactionView.SetInteractionDialogue(storeConfig.DialogueOpeningLine, storeConfig.DialogueActorName);
+                StoreConfig storeConfig = interactionOptionsParams[InteractionEnums.INTERACTION_OPTIONS.TALK] as StoreConfig;
+
+                if (storeConfig != null)
+                {
+                    interactionView.SetInteractionDialogue(storeConfig.DialogueOpeningLine, storeConfig.DialogueActorName);
+                }
             }
         }
         #endregion

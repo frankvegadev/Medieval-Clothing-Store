@@ -31,6 +31,7 @@ namespace Game.Store.View.Item
         public void ConfigureBuyView(BuyableItemConfig buyableItemConfig, Func<BuyableItemConfig, bool> onBuyItem)
         {
             itemIcon.sprite = buyableItemConfig.ItemConfig.PreviewSprite;
+            itemIcon.color = buyableItemConfig.ItemConfig.SpriteColor;
             titleText.text = buyableItemConfig.ItemConfig.DisplayTitle;
 
             buyOrSellBtn.onClick.RemoveAllListeners();
@@ -54,6 +55,7 @@ namespace Game.Store.View.Item
         public void ConfigureSellView(GameItemInstanceModel sellableItemConfig, Func<GameItemInstanceModel, bool> onSellItem)
         {
             itemIcon.sprite = sellableItemConfig.ItemConfigAttached.PreviewSprite;
+            itemIcon.color = sellableItemConfig.ItemConfigAttached.SpriteColor;
             titleText.text = sellableItemConfig.ItemConfigAttached.DisplayTitle;
 
             buyOrSellBtn.onClick.RemoveAllListeners();

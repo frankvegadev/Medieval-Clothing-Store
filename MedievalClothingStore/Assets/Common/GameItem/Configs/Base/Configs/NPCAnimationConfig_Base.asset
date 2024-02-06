@@ -16,68 +16,89 @@ MonoBehaviour:
     sprite: {fileID: 400957754, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: 5251660c72c4a5946ad7d44209d68c3c, type: 3}
   standUp:
     sprite: {fileID: -1867874048, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: 5251660c72c4a5946ad7d44209d68c3c, type: 3}
   standDown:
     sprite: {fileID: 205676081, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: 5251660c72c4a5946ad7d44209d68c3c, type: 3}
   walkRight:
   - sprite: {fileID: -1478946250, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -1325042217, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -1529651116, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: 5251660c72c4a5946ad7d44209d68c3c, type: 3}
   - sprite: {fileID: -1796182902, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -974400703, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: 883517377, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: beaaf3314620ce94b806f05794afb39c, type: 3}
   walkUp:
   - sprite: {fileID: -1660408027, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: d7c77a4eca30f2640a0f7e8f9d65d600, type: 3}
   - sprite: {fileID: 2106549546, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: 1585748468, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -1660408027, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 1
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: 8314720b893d8b84fb0267e78c8b8862, type: 3}
   - sprite: {fileID: 2106549546, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 1
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: 1585748468, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 1
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   walkDown:
   - sprite: {fileID: -2073449612, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: a9485466b3cec624ebfaf6e8187a5318, type: 3}
   - sprite: {fileID: 1126743250, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -113340169, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 0
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -2073449612, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 1
     flipY: 0
+    audioClipToPlay: {fileID: 8300000, guid: 5251660c72c4a5946ad7d44209d68c3c, type: 3}
   - sprite: {fileID: 1126743250, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 1
     flipY: 0
+    audioClipToPlay: {fileID: 0}
   - sprite: {fileID: -113340169, guid: 34f52709ca539f14fa1480e76f4092d5, type: 3}
     flipX: 1
     flipY: 0
+    audioClipToPlay: {fileID: 0}

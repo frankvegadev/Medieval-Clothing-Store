@@ -23,6 +23,8 @@ namespace Common.NPC.Animations
         private int animationIndex = 0;
         private NPCSpritesheetAnimationFrameConfig[] currentAnimSprites = null;
         private float currentAnimationTimer = 0;
+
+        private AudioSource audioSource = null;
         #endregion
 
         #region UNITY_CALLS
@@ -44,8 +46,10 @@ namespace Common.NPC.Animations
         #endregion
 
         #region PUBLIC_METHODS
-        public void Configure()
+        public void Configure(AudioSource audioSource = null)
         {
+            this.audioSource = audioSource;
+
             if (defaultConfig != null)
             {
                 currentConfig = defaultConfig;
@@ -177,6 +181,15 @@ namespace Common.NPC.Animations
             spriteRenderer.color = spriteColor;
             spriteRenderer.flipX = frameConfig.FlipX;
             spriteRenderer.flipY = frameConfig.FlipY;
+
+            if(audioSource != null)
+            {
+                if (frameConfig.AudioClipToPlay != null)
+                {
+                    audioSource.clip = frameConfig.AudioClipToPlay;
+                    audioSource.Play();
+                }
+            }
         }
 
         private void StartAnimation(NPCSpritesheetAnimationFrameConfig[] sprites)

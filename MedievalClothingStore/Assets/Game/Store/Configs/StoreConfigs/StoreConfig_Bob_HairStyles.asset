@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 763aa7b04fbdf234d913726c3a5ab237, type: 3}
-  m_Name: StoreConfig_Default
+  m_Name: StoreConfig_Bob_HairStyles
   m_EditorClassIdentifier: 
   buyableItems:
   - {fileID: 11400000, guid: bafacf038a08da040acedd6259623948, type: 2}
-  - {fileID: 11400000, guid: bafacf038a08da040acedd6259623948, type: 2}
-  interactionOptions: 000000000100000003000000
-  dialogueActorName: 'Bob:'
-  dialogueOpeningLine: Hello there stranger!
-  dialogueTalkLine: Hope you like my shop! I got plenty of items for sale!
+  - {fileID: 11400000, guid: 3ffafc25c08245e49a37edd8b92ed993, type: 2}
+  - {fileID: 11400000, guid: df115264949a8a24680257f15bc3f721, type: 2}
+  interactionOptions: 0000000001000000
+  dialogueActorName: 
+  dialogueOpeningLine: 
+  dialogueTalkLine: 
